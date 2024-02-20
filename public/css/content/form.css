@@ -1,0 +1,13 @@
+form
+{
+    width: 50%;
+    margin: auto;
+    margin-top: auto;
+    margin-top: 28px;
+    text-align: right;
+}
+@media only screen and (max-width: 990px) {
+    form{
+        width: 90%;
+    }
+}
