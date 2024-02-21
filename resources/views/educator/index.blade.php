@@ -57,7 +57,10 @@
             <div class="exam-section">
                 <div class="exams-header">
                     <h3>مجوعات الصف الثانى</h3>
-                    <a href="{{route('add_group_page', [2])}}" class="btn btn-success">إضافة مجموعة <i class="fa fa-plus"></i></a>
+                    <div class="d-flex">
+                        <a href="{{route('add_group_page', [2])}}" class="btn btn-success">إضافة مجموعة <i class="fa fa-plus"></i></a>
+
+                    </div>
                 </div>
                 <div class="exams">
                     @forelse ($groups_2 as $group)
@@ -84,6 +87,14 @@
                     @endforelse
                 </div>
             </div>
+
+            <div class="mt-5 text-center">
+                <form action="{{route('re_money')}}" method="post">
+                    @csrf
+                    <button type="submit" class="btn btn-danger">إعادة الإشتراكات</button>
+                </form>
+            </div>
+
         </section>
     </div>
 @endsection

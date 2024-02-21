@@ -25,6 +25,13 @@ class EducaterController extends Controller
         ]);
     }
 
+    public function re_money()
+    {
+        /*DB::update('UPDATE students JOIN groups ON groups.id = students.groups_id SET students.money = 0 WHERE groups.class = ?', [$class]);*/
+        DB::update('UPDATE students  SET money = 0 WHERE  code != \'0000\' ');
+        return redirect()->back()->with('success', "تم إلغاء إشتراكات ");
+    }
+
     public function logout(){
 
         Auth::logout();

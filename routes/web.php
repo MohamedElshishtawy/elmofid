@@ -28,6 +28,8 @@ Route::prefix('dashboard')->middleware(['auth', 'Educator'])->group(function () 
 
         Route::get('/', [EducaterController::class, 'index'])->name('groups');
 
+        Route::post('/re_money', [EducaterController::class, "re_money"])->name('re_money');
+
         Route::get("/{id}/", [EducaterController::class, 'group_page'])->name('group');
 
         Route::get('/add_group/{class}', [EducaterController::class, 'add_group'])->name("add_group_page");
