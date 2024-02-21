@@ -94,9 +94,10 @@ class StudentController extends Controller
             AND id NOT IN (SELECT exams_id FROM degrees WHERE students_id = ?)
             AND
             (
-                (exam.start_date <= CURRENT_TIMESTAMP AND exam.end_date >= CURRENT_TIMESTAMP)
-                OR (exam.start_date  = '0000-00-00 00:00:00' OR exam.end_date = '0000-00-00 00:00:00')
+                (exam.start_date <= CURRENT_TIMESTAMP AND  ( exam.end_date >= CURRENT_TIMESTAMP OR  exam.end_date IS NULL OR exam.end_date  = '0000-00-00 00:00:00') )
                 OR (exam.start_date IS NULL AND exam.end_date IS NULL)
+                OR ( (exam.start_date  = '0000-00-00 00:00:00' AND exam.end_date > CURRENT_TIMESTAMP) )
+                OR ( (exam.end_date  = '0000-00-00 00:00:00' AND exam.start_date < CURRENT_TIMESTAMP) )
             )
             AND
                 full_mark > 0",
@@ -347,7 +348,32 @@ ORDER BY
 
         $class =  Auth::user()->groups->class;
 
-        $pdfs = EBook::all()->where('class', $class)->where('availability', 1);
+        /*$pdfs = EBook::where('class', $class)
+            ->where('availability', 1)
+            ->where(function ($query) {
+                $query->whereNull('start_date')
+                    ->orWhere(function ($innerQuery) {
+                        $innerQuery->where('start_date', '<=', now())
+                            ->where('end_date', '>=', now());
+                    });
+            })
+            ->where(function ($query) {
+                $query->whereNull('end_date')
+                    ->orWhere('end_date', '>=', now());
+            })
+            ->get();*/
+        $pdfs = DB::select("SELECT * FROM `e_books`
+         WHERE
+             availability = 1
+        AND
+             class = ?
+        AND
+            (
+                (e_books.start_date <= CURRENT_TIMESTAMP AND  ( e_books.end_date >= CURRENT_TIMESTAMP OR  e_books.end_date IS NULL OR e_books.end_date  = '0000-00-00 00:00:00') )
+                OR (e_books.start_date IS NULL AND e_books.end_date IS NULL)
+                OR ( (e_books.start_date  = '0000-00-00 00:00:00' AND e_books.end_date > CURRENT_TIMESTAMP) )
+                OR ( (e_books.end_date  = '0000-00-00 00:00:00' AND e_books.start_date < CURRENT_TIMESTAMP) )
+            )", [Auth::user()->groups->class]);
 
         return view('student.pdfs', [
 

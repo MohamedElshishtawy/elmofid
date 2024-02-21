@@ -60,10 +60,54 @@
 
 	       </div>
 
+        <div class="mt-3">
+
+            <div>
+                <label class="exam-txt">  الفترة المتاحة</label>
+            </div>
+            <div class="row g-2">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="datetime-local" name="start_date" id="start_date" class="date-input form-control" value="{{old('start_date', $pdf['start_date'])}}">
+                        <label for="start_date">من تاريخ</label>
+                    </div>
+                    @error('start_date')
+                    <small class="txt-danger">{{$message}}</small>
+                    @enderror
+                </div>
+
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="datetime-local" name="end_date" id="end_date" class="date-input form-control" value="{{old('end_date', $pdf['end_date'])}}">
+                        <label for="end_date">الى</label>
+                    </div>
+                    @error('end_date')
+                    <small class="txt-danger">{{$message}}</small>
+                    @enderror
+                </div>
+
+            </div>
+        </div>
+
+        <div class="text-center text-lg">
+            <div class="switch-container">
+                <div class="switch">
+                    <input class="switch-input" name="availability" type="checkbox" id="degree_show" {{ old('availability', $pdf['availability  ']) == 'on' || old('availability', $pdf['availability']) == 1 ? 'checked' : '' }}>
+                    <label class="switch-label" for="degree_show">مرئي للطلاب</label>
+                    <br>
+
+                </div>
+                <label for="degree_show">مرئي للطلاب</label>
+                @error('availability')
+                <small class="txt-danger">{{ $message }}</small>
+                @enderror
+            </div>
+        </div>
+
 
 
          <div class="form-check form-switch mt-3">
-           <input class="form-check-input" name="availability" type="checkbox" id="flexSwitchCheckDefault" {{ old('avilability', $pdf['availability']) == 'on' || old('avilability', $pdf['availability']) == 1 ? 'checked' : '' }}>
+
            <label class="form-check-label mr-3" for="flexSwitchCheckDefault">مرئي للطلاب</label>
            @error('availability')
              <small class="form-text text-muted text-danger">{{$message}}</small>
