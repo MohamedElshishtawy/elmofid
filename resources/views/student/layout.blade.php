@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{asset('vendor/bootstrap-4.1/bootstrap.min.css')}}">
     <link href="{{asset("vendor/fontawesome-free-6.5.1-web/css/all.min.css")}}" rel="stylesheet" media="all">
     <link rel="stylesheet" href="{{asset('css/student/index.css?1')}}">
+    <link rel="stylesheet" href="{{asset('css/content/contacts.css?1')}}">
     @yield('css')
 </head>
 <body dir="rtl">
@@ -74,7 +75,11 @@
             <span>التقييم</span>
         </a>
     </div>
+    <x-contacts />
 
+    <script src="{{asset("vendor/jquery-3.2.1.min.js")}}"></script>
     @yield('js')
+    <script src="{{asset('js/content/contacts.js')}}"></script>
+
 </body>
 </html>
