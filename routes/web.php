@@ -4,6 +4,7 @@ use App\Http\Controllers\EducaterController;
 use App\Http\Controllers\HomeworkController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\WhiteListController;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\ExamController;
 use \App\Http\Controllers\StudentController;
@@ -22,8 +23,6 @@ Route::post('auth', [StudentController::class, 'authantication'])->name('auth');
 Route::prefix('dashboard')->middleware(['auth', 'Educator'])->group(function () {
 
     Route::post('/upload/{class}/{exam}', [ExamController::class, 'upload_img'])->name('upload_img'); // for edition PAGE exam and data and questions 3
-
-
 
     Route::prefix('groups')->group(function (){
 
@@ -49,7 +48,6 @@ Route::prefix('dashboard')->middleware(['auth', 'Educator'])->group(function () 
 
 
     });
-
 
     Route::prefix('exams')->group(function (){
 
@@ -80,8 +78,6 @@ Route::prefix('dashboard')->middleware(['auth', 'Educator'])->group(function () 
         Route::get('/{id}/degrees/{student_id}', [EducaterController::class, 'educater_show_exam'])->name('educater_show_exam');
 
     });
-
-
 
     Route::prefix('pdfs')->group(function () {
 
@@ -147,6 +143,13 @@ Route::prefix('dashboard')->middleware(['auth', 'Educator'])->group(function () 
 
     });
 
+    Route::prefix('whitelist')->group(function (){
+
+        Route::get('/', [WhiteListController::class, 'index'])->name('whitelists');
+
+        Route::get('/{class}', [WhiteListController::class, 'whitelist_page'])->name('whitelist_page');
+
+    });
 
 
 });

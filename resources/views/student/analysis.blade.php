@@ -1,9 +1,38 @@
 @extends('student.layout')
 
 @section('title', 'التقيمات')
+
+@section('css')
+    <link rel="stylesheet" href="{{asset('css/student/rank.css?1')}}">
+@endsection
 @section('content')
 
-
+    <div class="rank-container">
+        <div class="img-container">
+            <x-account_img />
+        </div>
+        <table class="table text-center">
+            <tbody>
+            <tr>
+                <td>اسم الطالب</td>
+                <td>{{$student->name}}</td>
+            </tr>
+            <tr>
+                <td>عدد الإمتحانات</td>
+                <td>{{$student->exams}}</td>
+            </tr>
+            <tr>
+                <td>عدد النقاط</td>
+                <td>{{$student->points}}</td>
+            </tr>
+            <tr>
+                <td>الترتيبك</td>
+                <td>{{$student->student_order}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <img src="{{asset('images/icon/cup.png')}}" alt="">
+    </div>
     <table class="table  table-striped">
         <thead>
             <tr>

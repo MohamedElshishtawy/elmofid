@@ -144,6 +144,16 @@
                             </div>
                         </a>
                     </li>
+
+                    <li class="{{$active == 'whitelists' ? 'active' : ''}}">
+                        <a class="js-arrow"  href="{{route("whitelists")}}">
+                            <div class="side-list-row">
+                                <img src="{{asset("images/icon/cup2.png")}}">
+                                <span>التقارير</span>
+                            </div>
+                        </a>
+                    </li>
+
                 </ul>
             </nav>
         </div>

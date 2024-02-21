@@ -11,18 +11,6 @@
 
 
 
-    .img img{
-        width: 120px;
-        height: 120px;
-        border-radius: 10px;
-        border: 1px dashed black;
-        padding: 5px;
-    }
-    .img{
-        text-align: center;
-        margin: 30px;
-        position: relative;
-    }
     form {
         width: 80%;
         position: relative;
@@ -38,12 +26,7 @@
 
         <h2 class="text-center mt-4">حسابى</h2>
 
-        <div class="img">
-
-            @php( $img = \App\Models\Student::student_image(Auth::user()->id) ?? null )
-
-            <img id="imgShow" src="{{ $img ? asset('storage/'.\App\Models\Student::student_image(Auth::user()->id) ) . '?'.time()  :  asset('images/icon/student.png')}}" alt="">
-        </div>
+        <x-account_img />
 
         <div class="form-group">
             <label for="email">حدد صورة جيديدة</label>

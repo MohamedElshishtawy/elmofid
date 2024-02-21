@@ -238,8 +238,33 @@ class StudentController extends Controller
 
     public function analysis_page()
     {
+
+        // All about the degrrees nad exams
+        $student = DB::select("SELECT
+    students.name AS name,
+    COUNT(degrees.id) AS exams,
+    SUM(degrees.degree) AS points,
+    ROW_NUMBER() OVER (ORDER BY SUM(degrees.degree) DESC) AS student_order
+FROM
+    students
+JOIN
+    degrees ON students.id = degrees.students_id
+JOIN
+    groups ON groups.id = students.groups_id
+JOIN
+    exam ON exam.id = degrees.exams_id
+WHERE
+    students.id = ?
+    AND groups.class = ?
+    AND exam.show_deg = 1
+GROUP BY
+    students.id, students.name
+ORDER BY
+    points DESC",
+                        [Auth::user()->id, Auth::user()->groups->class]);
         return view('student.analysis', [
-            'exams' => Degree::all()->where('students_id', Auth::user()->id)
+            'exams' => Degree::all()->where('students_id', Auth::user()->id),
+            'student' => $student[0]
         ]);
     }
 
@@ -248,6 +273,8 @@ class StudentController extends Controller
 
         $images = ExamController::getAllImages(Auth::user()->groups->class, $id);
 
+
+
         return view('student.show_exam', [
             'questions' => ExamController::get_questions($id),
             'answers' => ExamController::get_answers($id, Auth::user()->id),
@@ -255,7 +282,8 @@ class StudentController extends Controller
             'images' =>  $images['images'] ?? [],
             'images_names' => $images['names'] ?? [],
             'obs_names'      => $images['obs_names'] ?? [],
-            'obs_images'     => $images['obs_images'] ?? []
+            'obs_images'     => $images['obs_images'] ?? [],
+
         ]);
     }
 
