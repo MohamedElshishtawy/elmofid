@@ -19,8 +19,9 @@
             <div class="text-left mb-4">
                 <a href="{{route('download_excel', [$exam_id ])}}" class="btn btn-success">Excel</a>
             </div>
-            <table class="table text-center">
-                <thead>
+            <div class="table-container">
+                <table class="table text-center">
+                    <thead>
                     <tr>
                         <th>#</th>
                         <th>الكود</th>
@@ -29,9 +30,10 @@
                         <th>مدة الإختبار</th>
                         <th>إنتهاء</th>
                         <th>الحل</th>
+                        <th>إعادة الإمتحان</th>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     @php($n=0)
                     @forelse ($degrees as $degree)
                         <tr>
@@ -42,14 +44,21 @@
                             <td>{{$degree->duration}} دقيقة </td>
                             <td>{{$degree->created_at}}</td>
                             <td><a href="{{route('educater_show_exam',[$exam_id ,$degree->students_id])}}"><i class="fa-solid fa-file-circle-check fa-xl fa-fw"></i></a></td>
+                            <td>
+                                <form action="{{route('delete_deg', [$exam_id, $degree->degree_id])}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn btn-primary"><i class="fa-solid fa-rotate"></i></button>
+                                </form>
+                            </td>
                         </tr>
                     @empty
                         <tr>
                             <td colspan="7">لم يمتحن احد بعد</td>
                         </tr>
                     @endforelse
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </section>
     </div>
 @endsection

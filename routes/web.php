@@ -79,6 +79,8 @@ Route::prefix('dashboard')->middleware(['auth', 'Educator'])->group(function () 
 
         Route::get('/{id}/degrees/{student_id}', [EducaterController::class, 'educater_show_exam'])->name('educater_show_exam');
 
+        Route::post('/{id}/degrees/{student_id}/delete', [EducaterController::class, 'delete_deg'])->name('delete_deg');
+
     });
 
     Route::prefix('pdfs')->group(function () {

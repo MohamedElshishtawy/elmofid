@@ -272,7 +272,7 @@ class EducaterController extends Controller
     public function degrees_page($id)
     {
 
-        $degrees = DB::select("SELECT students.code, students.name, degree, duration, degrees.created_at, students_id
+        $degrees = DB::select("SELECT degrees.id degree_id, students.code, students.name, degree, duration, degrees.created_at, students_id
         FROM degrees
         JOIN students ON students.id = degrees.students_id
         WHERE
@@ -287,6 +287,13 @@ class EducaterController extends Controller
             "exam_id" => $id,
             'degrees' => $degrees]);
 
+    }
+
+    public function delete_deg(int $exam_id, int $degree_id)
+    {
+        Degree::find($degree_id)->delete();
+
+        return redirect()->back()->with('success', 'يمكن للطالب إعادة الإمتحان من جديد');
     }
 
     public function download_excel($group)
