@@ -6,7 +6,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/educator/add_exam.css?9') }}">
     <link rel="stylesheet" href="{{ asset('css/educator/exams.css?1') }}">
-    <link rel="stylesheet" href="{{ asset('css/educator/groups.css?2') }}">
+    <link rel="stylesheet" href="{{ asset('css/educator/groups.css?6') }}">
     <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
     <link rel="stylesheet" href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css" type="text/css" />
 @endsection

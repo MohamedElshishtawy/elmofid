@@ -1212,6 +1212,7 @@ section {
         top: 0;
         left: 0;
         right: 0;
+        position: fixed;
         /* height: 170px; */
     }
     .logout-wrap{
@@ -1319,7 +1320,7 @@ section {
         display: block;
     }
     aside.menu-sidebar{
-        right: -300px !important;
+        right: -300px;
     }
     aside.menu-sidebar:before {
         content: '';

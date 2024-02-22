@@ -7,7 +7,7 @@
 @section('css_files')
 
 
-    <link rel="stylesheet" href="{{asset("css/educator/groups.css")}}">
+    <link rel="stylesheet" href="{{asset("css/educator/groups.css?6")}}">
 
 
 @endsection

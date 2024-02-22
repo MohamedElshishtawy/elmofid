@@ -23,30 +23,25 @@
                     <a href="{{route('add_pdf', [1])}}" class="btn btn-success">إضافة كتاب <i class="fa fa-plus"></i></a>
                 </div>
                 <div class="exams">
-                    @forelse ($pdfs_1   as $pdf)
-                    <div class="card-container">
+                    @forelse ($pdfs_1 as $pdf)
+                        <div class="card-container">
 
-                      @if (Str::startsWith($pdf['link'], 'http'))
-                        {{-- External URL --}}
-                        <a href="{{ $pdf['link'] }}" class="exam-card">
-                            <span>{{$pdf['name']}}</span>
-                        </a>
-                      @else
-                          {{-- URL from storage --}}
-                          <a href="{{ asset('storage/' . $pdf['link']) }}" class="exam-card">
-                              <span>{{$pdf['name']}}</span>
-                          </a>
-                      @endif
+                            @php( $path = Str::startsWith($pdf['link'], 'http') ? $pdf['link'] :asset('storage/' . $pdf['link'])) {{-- External URL  // URL from storage--}}
 
-                        <div class="f-icons">
-                          <form  action="{{route('delete_pdf', [1, $pdf['id'] ] )}}" method="post">
-                            @csrf
-                            <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
-                          </form>
-                            <a href="{{route('edit_pdf', [1,$pdf['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
-                            <a href="#"><i class="fa-solid fa-chart-line fa-fw fa-lg"></i></a>
+                            <div  class="exam-card">
+                                <img src="{{asset("images/icon/pdf_icon.png")}}">
+                                <span>{{$pdf['name']}}</span>
+                            </div>
+
+                            <div class="f-icons">
+                                <form  action="{{route('delete_pdf', [1, $pdf['id'] ] )}}" method="post">
+                                    @csrf
+                                    <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
+                                </form>
+                                <a href="{{route('edit_pdf', [1,$pdf['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
+                                <a href="{{ $path }}"><i class="fa-solid fa-eye fa-fw fa-lg"></i></a>
+                            </div>
                         </div>
-                    </div>
                     @empty
                         <div>لا توجد مذكرات بعد</div>
                     @endforelse
@@ -59,29 +54,24 @@
                 </div>
                 <div class="exams">
                     @forelse ($pdfs_2 as $pdf)
-                    <div class="card-container">
-                      @if (Str::startsWith($pdf['link'], 'http'))
-                        {{-- External URL --}}
-                        <a href="{{ $pdf['link'] }}" class="exam-card">
-                            <span>{{$pdf['name']}}</span>
-                        </a>
-                      @else
-                          {{-- URL from storage --}}
-                          <a href="{{ asset('storage/' . $pdf['link']) }}" class="exam-card">
-                              <span>{{$pdf['name']}}</span>
-                          </a>
-                      @endif
+                        <div class="card-container">
 
-                        <div class="f-icons">
-                          <form  action="{{route('delete_pdf', [2, $pdf['id'] ] )}}" method="post">
-                            @csrf
-                            <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
-                          </form>
+                            @php( $path = Str::startsWith($pdf['link'], 'http') ? $pdf['link'] :asset('storage/' . $pdf['link'])) {{-- External URL  // URL from storage--}}
 
-                            <a href="{{route('edit_pdf', [1,$pdf['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
-                            <a href="#"><i class="fa-solid fa-chart-line fa-fw fa-lg"></i></a>
+                            <div  class="exam-card">
+                                <img src="{{asset("images/icon/pdf_icon.png")}}">
+                                <span>{{$pdf['name']}}</span>
+                            </div>
+
+                            <div class="f-icons">
+                                <form  action="{{route('delete_pdf', [2, $pdf['id'] ] )}}" method="post">
+                                    @csrf
+                                    <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
+                                </form>
+                                <a href="{{route('edit_pdf', [2,$pdf['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
+                                <a href="{{ $path }}"><i class="fa-solid fa-eye fa-fw fa-lg"></i></a>
+                            </div>
                         </div>
-                    </div>
                     @empty
                         <div>لا توجد مذكرات بعد</div>
                     @endforelse
@@ -93,32 +83,28 @@
                     <a href="{{route('add_pdf', [3])}}" class="btn btn-success">إضافة كتاب <i class="fa fa-plus"></i></a>
                 </div>
                 <div class="exams">
-                    @forelse ($pdfs_3 as $pdf)
-                    <div class="card-container">
-                      @if (Str::startsWith($pdf['link'], 'http'))
-                        {{-- External URL --}}
-                        <a href="{{ $pdf['link'] }}" class="exam-card">
-                            <span>{{$pdf['name']}}</span>
-                        </a>
-                      @else
-                          {{-- URL from storage --}}
-                          <a href="{{ asset('storage/' . $pdf['link']) }}" class="exam-card">
-                              <span>{{$pdf['name']}}</span>
-                          </a>
-                      @endif
+                        @forelse ($pdfs_3 as $pdf)
+                            <div class="card-container">
 
-                        <div class="f-icons">
-                          <form  action="{{route('delete_pdf', [1, $pdf['id'] ] )}}" method="post">
-                            @csrf
-                            <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
-                          </form>
-                            <a href="{{route('edit_pdf', [1,$pdf['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
-                            <a href="#"><i class="fa-solid fa-chart-line fa-fw fa-lg"></i></a>
-                        </div>
-                    </div>
-                    @empty
-                        <div>لا توجد مذكرات بعد</div>
-                    @endforelse
+                                @php( $path = Str::startsWith($pdf['link'], 'http') ? $pdf['link'] :asset('storage/' . $pdf['link'])) {{-- External URL  // URL from storage--}}
+
+                                <div  class="exam-card">
+                                    <img src="{{asset("images/icon/pdf_icon.png")}}">
+                                    <span>{{$pdf['name']}}</span>
+                                </div>
+
+                                <div class="f-icons">
+                                    <form  action="{{route('delete_pdf', [3, $pdf['id'] ] )}}" method="post">
+                                        @csrf
+                                        <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
+                                    </form>
+                                    <a href="{{route('edit_pdf', [3,$pdf['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
+                                    <a href="{{ $path }}"><i class="fa-solid fa-eye fa-fw fa-lg"></i></a>
+                                </div>
+                            </div>
+                        @empty
+                            <div>لا توجد مذكرات بعد</div>
+                        @endforelse
                 </div>
             </div>
         </section>

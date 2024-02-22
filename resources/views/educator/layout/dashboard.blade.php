@@ -61,7 +61,7 @@
     <link href="{{asset("vendor/perfect-scrollbar/perfect-scrollbar.css?1")}}" rel="stylesheet" media="all">
 
     <!-- Main CSS-->
-    <link href="{{asset("css/theme.css?5")}}" rel="stylesheet" media="all">
+    <link href="{{asset("css/theme.css?6")}}" rel="stylesheet" media="all">
 
     <!-- Mohamed CSS -->
     <link rel="stylesheet" href="{{asset("css/content/dropdown.css?1")}}">
@@ -237,7 +237,7 @@
 <script src="{{asset("js/main.js")}}"></script>
 
 {{--  Mohamed JS  --}}
-<script src="{{asset("js/content/dropdown.js?5")}}"></script>
+<script src="{{asset("js/content/dropdown.js?6")}}"></script>
 
 
 <script>

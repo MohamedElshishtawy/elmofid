@@ -1,6 +1,12 @@
 .window{
     text-align: right;
 }
+
+@media (max-width: 991px) {
+    .window {
+        padding-top: 53px;
+    }
+}
 h1, h2{
     text-align: center;
 }
@@ -15,7 +21,13 @@ section{
     margin-top: 20px;
     box-shadow: -6px 12px 0px #aaa;
 }
-
+.table-container{
+    overflow: auto;
+}
+.card-container>a , a.exam-card{
+    color: white !important;
+    cursor: pointer;
+}
 .cards {
   display: grid;
   grid-template-columns: repeat(4, auto);

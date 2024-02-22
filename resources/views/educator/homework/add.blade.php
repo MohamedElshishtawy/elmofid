@@ -4,7 +4,7 @@
 @section('title', 'إدارة الطلاب')
 @section('css_files')
     <link rel="stylesheet" href="{{asset("css/educator/exams.css")}}">
-    <link rel="stylesheet" href="{{asset("css/educator/groups.css")}}">
+    <link rel="stylesheet" href="{{asset("css/educator/groups.css?6")}}">
     <link rel="stylesheet" href="{{asset("css/content/form.css")}}">
 @endsection
 
@@ -30,15 +30,15 @@
             @enderror
         </div>
 
-        {{--<div class="col-md">
+        <div class="col-md">
             <div class="form-floating">
-                <input type="file" name="img" class="form-control" id="img">
+                <input type="file" name="homework" class="form-control" id="img">
                 <label for="floatingSelectGrid">ملف على الجهاز</label>
             </div>
             @error('img')
             <small class="form-text text-muted text-danger">{{$message}}</small>
             @enderror
-        </div>--}}
+        </div>
 
 
         <div class="form-group">
@@ -56,14 +56,21 @@
 
 
 
+        <div class="text-center text-lg mt-5">
+            <div class="switch-container">
+                <div class="switch">
+                    <input class="switch-input" name="availability" type="checkbox" id="degree_show" {{ old('availability') == 'on' ? 'checked' : '' }}>
+                    <label class="switch-label" for="degree_show">مرئي للطلاب</label>
+                    <br>
 
-        <div class="form-check form-switch mt-3">
-            <input class="form-check-input" name="availability" type="checkbox" id="flexSwitchCheckDefault" {{ old('avilability') == 'on' ? 'checked' : '' }}>
-            <label class="form-check-label mr-3" for="flexSwitchCheckDefault">مرئي للطلاب</label>
-            @error('availability')
-            <small class="form-text text-muted text-danger">{{$message}}</small>
-            @enderror
+                </div>
+                <label for="degree_show">مرئي للطلاب</label>
+                @error('availability')
+                <small class="txt-danger">{{ $message }}</small>
+                @enderror
+            </div>
         </div>
+
 
 
 

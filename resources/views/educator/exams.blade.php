@@ -7,7 +7,7 @@
 @section('title', 'إدارة')
 @section('css_files')
     <link rel="stylesheet" href="{{asset("css/educator/exams.css?5")}}">
-    <link rel="stylesheet" href="{{asset("css/educator/groups.css?5")}}">
+    <link rel="stylesheet" href="{{asset("css/educator/groups.css?6")}}">
 @endsection
 @section('content')
 
@@ -46,7 +46,7 @@
                 <div class="exams">
                     @forelse ($exams_1   as $exam)
                     <div class="card-container">
-                        <a href="{{route("edit_exam_page", [$exam['class'], $exam['id']])}}" class="exam-card">
+                        <a class="exam-card">
                             <span><img src="{{asset('images/icon/exam_icon.png')}}" alt=""></span>
                             <span>{{$exam['name']}}</span>
                             <span><i class="fa fa-eye fa-fw"></i> {{\App\Models\Degree::where('exams_id', $exam['id'])->count()}}</span>
@@ -73,7 +73,7 @@
                 <div class="exams">
                     @forelse ($exams_2 as $exam)
                     <div class="card-container">
-                        <a href="{{route("edit_exam_page", [$exam['class'], $exam['id']])}}" class="exam-card">
+                        <a  class="exam-card">
                             <span><img src="{{asset('images/icon/exam_icon.png')}}" alt=""></span>
                             <span>{{$exam['name']}}</span>
                             <span><i class="fa fa-eye fa-fw"></i> {{\App\Models\Degree::where('exams_id', $exam['id'])->count()}}</span>
@@ -100,7 +100,7 @@
                 <div class="exams">
                     @forelse ($exams_3 as $exam)
                     <div class="card-container">
-                        <a href="{{route("edit_exam_page", [$exam['class'], $exam['id']])}}" class="exam-card">
+                        <a class="exam-card">
                             <span><img src="{{asset('images/icon/exam_icon.png')}}" alt=""></span>
                             <span>{{$exam['name']}}</span>
                             <span><i class="fa fa-eye fa-fw"></i> {{\App\Models\Degree::where('exams_id', $exam['id'])->count()}}</span>

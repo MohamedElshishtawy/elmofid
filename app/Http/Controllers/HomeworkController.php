@@ -7,6 +7,7 @@ use App\Models\Educater;
 use App\Models\Group;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class HomeworkController extends Controller
@@ -50,28 +51,23 @@ class HomeworkController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:25',
-            'description' => 'nullable|max:255'
+            'description' => 'nullable|max:255',
+            'homework' => 'nullable|file',
         ]);
 
-
-
-
         // Determine if the input is a file or URL
-       /* if ($request->hasFile('homework')) {
+        if ($request->hasFile('homework')) {
 
-            $homeworkFile = $request->file('homework');
+            $imgFile = $request->file('homework');
 
             $location = "homeworks/{$class}/";
 
-            $homeworkFileName = time() . '.' . $homeworkFile->getClientOriginalExtension();
+            $imgFileName = time() . '.' . $imgFile->getClientOriginalExtension();
 
-            $path = $homeworkFile->storeAs($location, $homeworkFileName, 'public');
+            $path = $imgFile->storeAs($location, $imgFileName, 'public');
 
-        }  else {
+        }
 
-            return redirect()->back()->with('error', 'Invalid homework input.');
-
-        }*/
 
         // Store data in the Homeworks database table
         Homework::create([
@@ -82,14 +78,18 @@ class HomeworkController extends Controller
             'availability' => $availability
         ]);
 
-        return redirect()->route('homework_index')->with('تم تحميل الواجب');
+        return redirect()->route('homework_index')->with('success', 'تم تحميل الواجب');
 
     }
 
 
     public function edit_homework(int $class, int $id)
     {
+
         $homework = Homework::findOrFail($id);
+
+
+
         return view('educator.homework.edit', [
             'homework' => $homework,
             'class_human' => Educater::class_human_read($class),
@@ -99,20 +99,42 @@ class HomeworkController extends Controller
 
     public function save_edit_homework(Request $request, int $class, int $id)
     {
+        $homework = Homework::findOrFail($id);
 
         $availability = $request->has('availability') ? 1 : 0;
 
         $request->validate([
             'name' => 'required|string|max:25',
+            'description' => 'nullable|max:255',
+            'homework' => 'nullable|file',
         ]);
 
-        $homework = Homework::findOrFail($id)->update([
+        if ($request->hasFile('homework')) {
+            // Delete the old homework file
+            if ($homework->link) {
+                Storage::disk('public')->delete($homework->link);
+            }
+
+            // Upload the new homework file
+            $imgFile = $request->file('homework');
+            $location = "homeworks/{$class}/";
+            $imgFileName = time() . '.' . $imgFile->getClientOriginalExtension();
+            $path = $imgFile->storeAs($location, $imgFileName, 'public');
+
+            $homework->update(['link' => $path]);
+
+        }
+
+        // Update the homework record with the new information
+        $homework->update([
             'name' => $request->name,
             'availability' => $availability,
             'description' => $request->description,
         ]);
+
         return redirect()->route('homework_index')->with('success', 'تم تعديل الواجب');
     }
+
 
     public function delete($class, $homework_id){
 

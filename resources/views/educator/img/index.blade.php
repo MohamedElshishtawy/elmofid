@@ -7,7 +7,7 @@
 @section('title', 'إدارة')
 @section('css_files')
     <link rel="stylesheet" href="{{asset("css/educator/exams.css?3")}}">
-    <link rel="stylesheet" href="{{asset("css/educator/groups.css")}}">
+    <link rel="stylesheet" href="{{asset("css/educator/groups.css?6")}}">
 @endsection
 @section('content')
 
@@ -25,18 +25,12 @@
                 <div class="exams">
                     @forelse ($imgs_1   as $img)
                     <div class="card-container">
+                        @php( $path = Str::startsWith($img['link'], 'http') ? $img['link'] : asset('storage/' . $img['link']))
 
-                      @if (Str::startsWith($img['link'], 'http'))
-                        {{-- External URL --}}
-                        <a href="{{ $img['link'] }}" class="exam-card">
+                        <div class="exam-card">
+                            <img src="{{asset("images/icon/board.png")}}">
                             <span>{{$img['name']}}</span>
-                        </a>
-                      @else
-                          {{-- URL from storage --}}
-                          <a href="{{ asset('storage/' . $img['link']) }}" class="exam-card">
-                              <span>{{$img['name']}}</span>
-                          </a>
-                      @endif
+                        </div>
 
                         <div class="f-icons">
                           <form  action="{{route('delete_img', [1, $img['id'] ] )}}" method="post">
@@ -44,7 +38,7 @@
                             <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
                           </form>
                             <a href="{{route('edit_img', [1,$img['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
-                            <a href="#"><i class="fa-solid fa-chart-line fa-fw fa-lg"></i></a>
+                            <a href="{{$path}}}"><i class="fa-solid fa-eye fa-fw fa-lg"></i></a>
                         </div>
                     </div>
                     @empty
@@ -58,30 +52,24 @@
                     <a href="{{route('add_img', [2])}}" class="btn btn-success">إضافة صورة <i class="fa fa-plus"></i></a>
                 </div>
                 <div class="exams">
-                    @forelse ($imgs_2 as $img)
-                    <div class="card-container">
-                      @if (Str::startsWith($img['link'], 'http'))
-                        {{-- External URL --}}
-                        <a href="{{ $img['link'] }}" class="exam-card">
-                            <span>{{$img['name']}}</span>
-                        </a>
-                      @else
-                          {{-- URL from storage --}}
-                          <a href="{{ asset('storage/' . $img['link']) }}" class="exam-card">
-                              <span>{{$img['name']}}</span>
-                          </a>
-                      @endif
+                    @forelse ($imgs_2   as $img)
+                        <div class="card-container">
+                            @php( $path = Str::startsWith($img['link'], 'http') ? $img['link'] : asset('storage/' . $img['link']))
 
-                        <div class="f-icons">
-                          <form  action="{{route('delete_img', [2, $img['id'] ] )}}" method="post">
-                            @csrf
-                            <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
-                          </form>
+                            <div class="exam-card">
+                                <img src="{{asset("images/icon/board.png")}}">
+                                <span>{{$img['name']}}</span>
+                            </div>
 
-                            <a href="{{route('edit_img', [1,$img['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
-                            <a href="#"><i class="fa-solid fa-chart-line fa-fw fa-lg"></i></a>
+                            <div class="f-icons">
+                                <form  action="{{route('delete_img', [2, $img['id'] ] )}}" method="post">
+                                    @csrf
+                                    <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
+                                </form>
+                                <a href="{{route('edit_img', [2,$img['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
+                                <a href="{{$path}}"><i class="fa-solid fa-eye fa-fw fa-lg"></i></a>
+                            </div>
                         </div>
-                    </div>
                     @empty
                         <div>لا توجد صور حصص بعد</div>
                     @endforelse
@@ -93,31 +81,26 @@
                     <a href="{{route('add_img', [3])}}" class="btn btn-success">إضافة صورة <i class="fa fa-plus"></i></a>
                 </div>
                 <div class="exams">
-                    @forelse ($imgs_3 as $img)
-                    <div class="card-container">
-                      @if (Str::startsWith($img['link'], 'http'))
-                        {{-- External URL --}}
-                        <a href="{{ $img['link'] }}" class="exam-card">
-                            <span>{{$img['name']}}</span>
-                        </a>
-                      @else
-                          {{-- URL from storage --}}
-                          <a href="{{ asset('storage/' . $img['link']) }}" class="exam-card">
-                              <span>{{$img['name']}}</span>
-                          </a>
-                      @endif
+                    @forelse ($imgs_3   as $img)
+                        <div class="card-container">
+                            @php( $path = Str::startsWith($img['link'], 'http') ? $img['link'] : asset('storage/' . $img['link']))
 
-                        <div class="f-icons">
-                          <form  action="{{route('delete_img', [1, $img['id'] ] )}}" method="post">
-                            @csrf
-                            <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
-                          </form>
-                            <a href="{{route('edit_img', [1,$img['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
-                            <a href="#"><i class="fa-solid fa-chart-line fa-fw fa-lg"></i></a>
+                            <div class="exam-card">
+                                <img src="{{asset("images/icon/board.png")}}">
+                                <span>{{$img['name']}}</span>
+                            </div>
+
+                            <div class="f-icons">
+                                <form  action="{{route('delete_img', [3, $img['id'] ] )}}" method="post">
+                                    @csrf
+                                    <button type="submit"><i class="fa-solid fa-trash fa-lg fa-fw"></i></button>
+                                </form>
+                                <a href="{{route('edit_img', [3,$img['id']])}}"><i class="fa-solid fa-pen-to-square fa-fw fa-lg"></i></a>
+                                <a href="{{$path}}"><i class="fa-solid fa-eye fa-fw fa-lg"></i></a>
+                            </div>
                         </div>
-                    </div>
                     @empty
-                        <div>لا توجد صور الحصص بعد</div>
+                        <div>لا توجد صور حصص بعد</div>
                     @endforelse
                 </div>
             </div>

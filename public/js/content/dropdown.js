@@ -8,7 +8,17 @@ $(document).ready(function() {
     });
 
     $('#menu').on('click', function() {
-        $('.menu-sidebar').show().css('right', '600px');
+        var menuSidebar = $('.menu-sidebar');
+        var currentRight = parseInt(menuSidebar.css('right'));
+
+        if (currentRight < 0) {
+            // If the right value is less than 0, animate to right: 0 and set width to 100%
+            menuSidebar.animate({ right: 0}, 500);
+            $('#menu').html('<i class="fa fa-xmark"></i>')
+        }else{
+            menuSidebar.animate({ right: '-300px'}, 500);
+            $('#menu').html('<i class="fa-solid fa-bars"></i>')
+        }
     });
 
     $('.money').on('click', function() {

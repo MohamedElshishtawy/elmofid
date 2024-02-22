@@ -4,7 +4,7 @@
 @section('title', 'إدارة الطلاب')
 @section('css_files')
     <link rel="stylesheet" href="{{ asset('css/educator/exams.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/educator/groups.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/educator/groups.css?6') }}">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 @endsection
 @section('content')
@@ -12,8 +12,9 @@
         <h1>الإدارة</h1>
         <section>
             <h2>تقارير المجموعة</h2>
-            <table class="table mt-5">
-                <tbody>
+            <div class="table-container">
+                <table class="table mt-5">
+                    <tbody>
                     <tr>
                         <td>اسم المجموعة</td>
                         <td>{{ $data['name'] }}</td>
@@ -35,8 +36,9 @@
                         <td>{{ $data['total'] }}</td>
                     </tr>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </section>
         <section>
             <h2>الطلاب</h2>
@@ -49,7 +51,9 @@
             <div class="input-group mt-3">
                 <input type="text" class="form-control search-2" id="search-2" placeholder="ابحث عما تريد في طلابك"aria-label="Recipient's username" aria-describedby="basic-addon2">
               </div>
-            <table id="table-1" class="table mt-1">
+            <div class="table-container">
+
+                <table id="table-1" class="table mt-1">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -92,7 +96,7 @@
                 </tbody>
             </table>
 
-
+            </div>
 
         </section>
     </div>

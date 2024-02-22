@@ -7,7 +7,7 @@
 @section('title', 'إدارة')
 @section('css_files')
     <link rel="stylesheet" href="{{asset("css/educator/exams.css?5")}}">
-    <link rel="stylesheet" href="{{asset("css/educator/groups.css?5")}}">
+    <link rel="stylesheet" href="{{asset("css/educator/groups.css?6")}}">
 @endsection
 @section('content')
 
