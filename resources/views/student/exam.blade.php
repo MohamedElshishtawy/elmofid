@@ -128,7 +128,7 @@
     <script src="{{ asset('vendor/jquery-3.2.1.min.js') }}"></script>
     <script src="{{ asset('js/student/exam.js?9') }}"></script>
     <script src="{{ asset('js/student/storage.js?8') }}"></script>
-    <script src="{{ asset('js/student/timer.js?10') }}"></script>
+    <script src="{{ asset('js/student/timer.js?11') }}"></script>
 
 
 

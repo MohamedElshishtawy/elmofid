@@ -37,10 +37,10 @@ function updateTimer() {
         if ( timeDifference < 10) {
 
             timerElement.css('color', 'red');
-                if (!alertShown) {
-                    alert('قارب الوقت على الإنتهاء');
-                    alertShown = true; // Mark that the alert has been shown
-                }
+            if (!alertShown) {
+                alert('قارب الوقت على الإنتهاء');
+                alertShown = true; // Mark that the alert has been shown
+            }
 
         } else if (timeDifference < durationInMinutes / 2 ) {
             timerElement.css('color', 'orange');

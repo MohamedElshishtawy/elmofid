@@ -114,7 +114,7 @@ class StudentController extends Controller
                 class = ?
             AND
                 end_date < CURRENT_TIMESTAMP
-            -- AND    id NOT IN (SELECT exams_id FROM degrees WHERE students_id = ?)
+            AND    id NOT IN (SELECT exams_id FROM degrees WHERE students_id = ?)
             AND
                 full_mark > 0
             ",
