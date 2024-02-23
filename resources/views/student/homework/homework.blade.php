@@ -21,7 +21,7 @@
                 @if(strtolower($extension) === 'pdf')
                     {{-- If it's a PDF, use iframe --}}
                     <iframe src="{{asset('storage/'.$homework['link'])}}" frameborder="0"></iframe>
-                @elseif(in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif']))
+                @elseif(in_array(strtolower($extension), ['jpg', 'jpeg', 'png', 'gif', 'jfif']))
                     {{-- If it's an image, use img tag --}}
                     <img src="{{asset('storage/'.$homework['link']) }}" alt="Homework Image" style="border-radius: 10px">
                 @else

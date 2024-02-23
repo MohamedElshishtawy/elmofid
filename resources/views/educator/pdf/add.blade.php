@@ -55,7 +55,7 @@
       	      <label for="floatingSelectGrid">ملف على الجهاز</label>
       	    </div>
             @error('pdf')
-              <small class="form-text text-muted text-danger">{{$message}}</small>
+              <small class="text-danger">{{$message}}</small>
             @enderror
       	  </div>
 
@@ -84,7 +84,7 @@
                         <label for="end_date">الى</label>
                     </div>
                     @error('end_date')
-                    <small class="txt-danger">{{$message}}</small>
+                    <small class="text-danger">{{$message}}</small>
                     @enderror
                 </div>
 

@@ -80,6 +80,18 @@ class PdfController extends Controller
 
         }
 
+        if (isset($request->start_date) && Carbon::createFromFormat('Y-m-d\TH:i', $request->start_date) !== false) {
+            // Parse the date and format it as needed
+            $request->start_date = Carbon::parse($request->start_date)->format('Y-m-d H:i:s');
+        }
+
+        if (isset($request->end_date) && Carbon::createFromFormat('Y-m-d\TH:i', $request->end_date) !== false) {
+            // Parse the date and format it as needed
+            $request->end_date = Carbon::parse($request->end_date)->format('Y-m-d H:i:s');
+        }
+
+        dd($request->start_date);
+
         // Store data in the EBooks database table
         EBook::create([
           'name' => $request->name,

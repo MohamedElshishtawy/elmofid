@@ -118,7 +118,7 @@ class StudentController extends Controller
             AND
                 full_mark > 0
             ",
-            [Auth::user()->groups->class]
+            [Auth::user()->groups->class, Auth::user()->id]
         );
 
 
